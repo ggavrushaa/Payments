@@ -59,5 +59,14 @@ class InstallPaymentsCommand extends Command
             'active' => false,
         ]);
 
+    PaymentMethod::query()
+        ->firstOrCreate([
+            'driver' => PaymentDriverEnum::stripe_checkout,
+            'driver_currency_id' => Currency::USD,
+        ], [
+            'name' => 'Stripe Checkout',
+            'active' => false,
+        ]);
+
     }
 }

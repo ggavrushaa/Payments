@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\Api\Payments\Callbacks\TinkoffController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\Payments\Callbacks\StripeController;
+use App\Http\Controllers\Api\Payments\Callbacks\TinkoffController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,4 +21,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post('payments/callbacks/tinkoff', TinkoffController::class)->name('api.payments.callbacks.tinkoff');
+Route::post('payments/callbacks/stripe', StripeController::class)->name('api.payments.callbacks.stripe');
+
 
