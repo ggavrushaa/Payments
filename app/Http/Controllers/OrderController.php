@@ -27,6 +27,7 @@ class OrderController extends Controller
         ->createPayment()
         ->payable($order)
         ->run();    
+   
 
         return to_route( 'payments.checkout', $payment->uuid );
     }

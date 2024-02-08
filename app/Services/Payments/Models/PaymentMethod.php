@@ -11,7 +11,7 @@ class PaymentMethod extends Model
     use HasFactory;
     protected $fillable = [
         'name', 'active',
-        'driver',
+        'driver', 'driver_currency_id',
     ];
     protected $casts = [
         'active' => 'boolean',

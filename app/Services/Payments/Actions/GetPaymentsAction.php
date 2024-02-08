@@ -18,7 +18,7 @@ class GetPaymentsAction
     {
         $query = Payment::query();
 
-        if(is_null($this->uuid)) {
+        if(!is_null($this->uuid)) {
             $query->where('uuid', $this->uuid);
         }
 

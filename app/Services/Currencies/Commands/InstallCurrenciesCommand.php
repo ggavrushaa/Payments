@@ -2,8 +2,10 @@
 
 namespace App\Services\Currencies\Commands;
 
-use App\Services\Currencies\Models\Currency;
+use App\Support\Values\AmountValue;
 use Illuminate\Console\Command;
+use App\Services\Currencies\Models\Currency;
+use App\Services\Currencies\Sources\SourceEnum;
 
 class InstallCurrenciesCommand extends Command
 {
@@ -28,7 +30,27 @@ class InstallCurrenciesCommand extends Command
         ->firstOrCreate([
             'id'=> Currency::RUB,
         ], [
-            'name'=> 'Рубль',
+            'name' => 'Рубль',
+            'price' => new AmountValue(1),
+            'source' => SourceEnum::manual,
+        ]);
+
+        Currency::query()
+        ->firstOrCreate([
+            'id'=> Currency::USD,
+        ], [
+            'name' => 'Доллар',
+            'price' => new AmountValue(100),
+            'source' => SourceEnum::cbrf,
+        ]);
+
+        Currency::query()
+        ->firstOrCreate([
+            'id'=> Currency::EUR,
+        ], [
+            'name' => 'Евро',
+            'price' => new AmountValue(110),
+            'source' => SourceEnum::cbrf,
         ]);
     }
 }

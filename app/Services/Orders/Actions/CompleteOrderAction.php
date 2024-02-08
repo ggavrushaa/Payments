@@ -7,9 +7,8 @@ use App\Services\Orders\Models\Order;
 
 class CompleteOrderAction
 {
-    public function run(Order $order): bool
+    public function run(Order $order): void
     {
-        $order->status = OrderStatusEnum::completed;
-        return $order->save();
+        $order->update(['status' => OrderStatusEnum::completed]);
     }
 }

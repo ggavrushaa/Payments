@@ -29,6 +29,10 @@ return new class extends Migration
             $table->foreign('method_id')->references('id')->on('payment_methods');
 
             $table->string('driver')->nullable();
+            $table->string('driver_currency_id')->nullable()->comment('Валюта провидера');
+            $table->foreign('driver_currency_id')->references('id')->on('currencies');
+            $table->decimal('driver_amount', 12, 2)->nullable();
+            $table->string('driver_payment_id')->nullable()->comment('ID платежа в определённом драйвере');
 
         });
     }

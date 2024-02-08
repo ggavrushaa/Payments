@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UpdatePaymentRequest;
+use App\Services\Orders\Models\Order;
 use App\Services\Payments\Enums\PaymentStatusEnum;
 use App\Services\Payments\Models\Payment;
 use App\Services\Payments\Models\PaymentMethod;
 use App\Services\Payments\PaymentService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 /**
@@ -19,6 +21,7 @@ class PaymentController extends Controller
     {
         $methods = $paymentService
         ->getPaymentMethods()
+        // ->currency($payment->currency_id)
         ->active(true)
         ->get();
 
@@ -31,6 +34,7 @@ class PaymentController extends Controller
     ) {
         abort_unless($payment->status->isPending(), 404);
         
+        
         $method = $paymentService
         ->getPaymentMethods()
         ->id($request->input('method_id'))
@@ -38,7 +42,7 @@ class PaymentController extends Controller
         ->first();
 
         abort_unless($method, 404);
-
+        // abort_unless($payment->currency_id === $method->driver_currency_id, 404);
 
         $paymentService
         ->updatePayment()
@@ -88,7 +92,7 @@ class PaymentController extends Controller
     {
         $uuid = $request->input('uuid');
         abort_unless(Str::isUuid($uuid), 404);
-
+        
        $payment = $paymentService
        ->getPayments()
        ->uuid($uuid)
@@ -96,7 +100,9 @@ class PaymentController extends Controller
 
         abort_unless($payment, 404);
 
+        
         return view('payments.success', compact('payment'));
+
     }
     public function failure(Request $request, Payment $payment, PaymentService $paymentService)
     {

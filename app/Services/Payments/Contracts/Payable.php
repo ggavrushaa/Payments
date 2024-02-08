@@ -13,5 +13,4 @@ interface Payable
     public function getPayableID(): int; 
     public function getPayableUrl(): string;
 
-    public function onPaymentCompleted(): void;
 }

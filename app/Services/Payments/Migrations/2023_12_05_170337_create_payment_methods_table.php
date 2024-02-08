@@ -17,7 +17,11 @@ return new class extends Migration
 
             $table->string('name');
             $table->boolean('active')->default(false);
-            $table->string('driver');
+
+            $table->string('driver')->comment('Провайдер');
+            $table->string('driver_currency_id')->comment('Валюта провайдера');
+            $table->foreign('driver_currency_id')->references('id')->on('currencies');
+            $table->string('driver_method_id')->nullable();
         });
     }
 

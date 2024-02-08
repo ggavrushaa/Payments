@@ -20,12 +20,16 @@ class Payment extends Model
         'currency_id', 'amount',
         'payable_type', 'payable_id',
         'method_id',
-        'drivers',
+
+        'drivers', 'driver_payment_id',
+        'driver_currency_id', 'driver_amount',
     ];
     protected $casts = [ 
         'status' => PaymentStatusEnum::class,
         'amount' => AmountValue::class,
+
         'driver' => PaymentDriverEnum::class,
+        'driver_amount' => AmountValue::class,
     ];
 
     public function payable(): MorphTo
