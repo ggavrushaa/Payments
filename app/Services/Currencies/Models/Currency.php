@@ -32,6 +32,7 @@ class Currency extends Model
     public const RUB = 'RUB';
     public const USD = 'USD';
     public const EUR = 'EUR';
+    public const BTC = 'BTC';
 
     public function isMain(): bool
     {

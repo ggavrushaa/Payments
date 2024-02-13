@@ -10,9 +10,9 @@ use App\Services\Payments\Models\Payment;
 
 class CompletePaymentAction
 {
-    public function run(Payment $payment): void
+    public function run(Payment $payment, array $data = []): void
     {
-        $payment->update(['status' => PaymentStatusEnum::completed]);
+        $payment->update(['status' => PaymentStatusEnum::completed, ...$data]);
 
        $data = PaymentCompletedData::fromPayment($payment);
        event(new PaymentCompletedEvent($data)); 

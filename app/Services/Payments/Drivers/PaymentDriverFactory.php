@@ -12,6 +12,7 @@ class PaymentDriverFactory
         return match ($driver) {
             PaymentDriverEnum::test => app(TestPaymentDriver::class),
             PaymentDriverEnum::tinkoff => app(TinkoffDriver::class),
+            PaymentDriverEnum::bitcoin => app(BitcoinDriver::class),
             PaymentDriverEnum::stripe_elements => app(StripeElementsDriver::class), 
             PaymentDriverEnum::stripe_checkout => app(StripeCheckoutDriver::class), 
 

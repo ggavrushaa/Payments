@@ -68,5 +68,14 @@ class InstallPaymentsCommand extends Command
             'active' => false,
         ]);
 
+    PaymentMethod::query()
+        ->firstOrCreate([
+            'driver' => PaymentDriverEnum::bitcoin,
+            'driver_currency_id' => Currency::BTC,
+        ], [
+            'name' => 'Bitcoin Wallet',
+            'active' => false,
+        ]);
+
     }
 }

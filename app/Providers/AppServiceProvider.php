@@ -17,7 +17,7 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
-        bcscale(2);
+        bcscale(8);
         // DB::listen(function (QueryExecuted $query) {
         //     info ($query->sql);
         //     // $query->bindings;

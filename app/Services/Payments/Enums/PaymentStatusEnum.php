@@ -35,6 +35,10 @@ enum PaymentStatusEnum: string
   {
       return $this->is(PaymentStatusEnum::pending);
   }
+  public function isNotPending(): bool
+  {
+      return ! $this->isPending();
+  }
   public function isCompleted(): bool
   {
       return $this->is(PaymentStatusEnum::completed);

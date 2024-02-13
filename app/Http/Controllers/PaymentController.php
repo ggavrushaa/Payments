@@ -54,8 +54,14 @@ class PaymentController extends Controller
 
     public function process(Payment $payment, PaymentService $paymentService)
     {
-        abort_unless($payment->status->isPending(), 404);
         abort_unless($payment->method_id, 404);
+
+        if($payment->status->isCompleted()) {
+            return redirect()->route('payments.success', ['uuid'=> $payment->uuid]);
+        }
+        if($payment->status->isCancelled()) {
+            return redirect()->route('payments.failure', ['uuid'=> $payment->uuid]);
+        }
 
         $driver =  $paymentService->getDriver($payment->driver);
        

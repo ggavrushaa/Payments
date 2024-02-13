@@ -10,6 +10,10 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 
+/**
+ * @property string|null $driver_wallet
+ * 
+ */
 class Payment extends Model
 {
     use HasFactory;
@@ -21,7 +25,8 @@ class Payment extends Model
         'payable_type', 'payable_id',
         'method_id',
 
-        'drivers', 'driver_payment_id',
+        'drivers', 
+        'driver_payment_id', 'driver_wallet',
         'driver_currency_id', 'driver_amount',
     ];
     protected $casts = [ 

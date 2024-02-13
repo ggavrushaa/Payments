@@ -20,8 +20,8 @@ function convert(AmountValue $amount): AmountValue
     ->run($amount);
 }
 
-function money(AmountValue $amount, string $currency): string
+function money(AmountValue $amount, string $currency, int $scale = 2): string
 {
-    $amount = $amount->add(new AmountValue(0), 2);
+    $amount = $amount->add(new AmountValue(0), $scale);
     return "{$amount} {$currency}";
 }

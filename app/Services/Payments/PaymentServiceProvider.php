@@ -2,8 +2,11 @@
 
 namespace App\Services\Payments;
 
-use App\Services\Payments\Commands\InstallPaymentsCommand;
+use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
+use App\Services\Payments\Commands\InstallPaymentsCommand;
+use App\Services\Bitcoin\Events\BitcoinTransactionCompleted;
+use App\Services\Payments\Listeners\CompletePaymentListener;
 
 class PaymentServiceProvider extends ServiceProvider
 {
@@ -28,5 +31,7 @@ class PaymentServiceProvider extends ServiceProvider
                 InstallPaymentsCommand::class, 
                 ]);
         }
+
+        Event::listen(BitcoinTransactionCompleted::class, CompletePaymentListener::class);
     }
 }

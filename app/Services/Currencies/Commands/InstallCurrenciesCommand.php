@@ -52,5 +52,14 @@ class InstallCurrenciesCommand extends Command
             'price' => new AmountValue(110),
             'source' => SourceEnum::cbrf,
         ]);
+
+        Currency::query()
+        ->firstOrCreate([
+            'id'=> Currency::BTC,
+        ], [
+            'name' => 'Bitcoin',
+            'price' => new AmountValue(1_875_500),
+            'source' => SourceEnum::manual,
+        ]);
     }
 }
